@@ -13,6 +13,21 @@ bool Valid(vector<int>& positions, int row) {
     return true;
 }
 
+void Solve(int n, int row, vector<int>& positions, int& solutions) {
+    if (row == n) { 
+        solutions++;
+        return;
+    }
+    for (int col = 0; col < n; col++) {
+        positions[row] = col; 
+        if (Valid(positions, row)) { 
+            Solve(n, row + 1, positions, solutions); 
+        }
+    }
+}
+
+
+
 
 
 
