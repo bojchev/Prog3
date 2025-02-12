@@ -3,27 +3,29 @@
 
 using namespace std;
 
-bool Valid(vector<int>& positions, int row) {
+bool Valid(vector<int>& pos, int row) {
     for (int i = 0; i < row; i++) {
-        if (positions[i] == positions[row] || 
-            abs(positions[i] - positions[row]) == abs(i - row)) {
+        if (pos[i] == pos[row] || 
+            abs(pos[i] - pos[row]) == abs(i - row)) {
             return false;
         }
     }
     return true;
 }
 
-void Solve(int n, int row, vector<int>& positions, int& solutions) {
+void Solve(int n, int row, vector<int>& pos, int& s) {
     if (row == n) { 
-        solutions++;
+        s++;
         return;
     }
     for (int col = 0; col < n; col++) {
-        positions[row] = col; 
-        if (Valid(positions, row)) { 
-            Solve(n, row + 1, positions, solutions); 
+        pos[row] = col; 
+        if (Valid(pos, row)) { 
+            Solve(n, row + 1, pos, s); 
         }
     }
+
+    cout<<s;
 }
 
 
